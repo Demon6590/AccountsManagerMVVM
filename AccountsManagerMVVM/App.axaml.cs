@@ -10,7 +10,7 @@ namespace AccountsManagerMVVM;
 
 public partial class App : Application
 {
-    public DbContext DbContext = new(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets","accounts.db"));
+    public static DbContext DbContext = new(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets","accounts.db"));
     
     
     public override void Initialize()

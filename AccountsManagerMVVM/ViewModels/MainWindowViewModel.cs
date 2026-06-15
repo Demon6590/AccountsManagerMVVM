@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 
 namespace AccountsManagerMVVM.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel : ViewModelBase,IScreen
 {
     public ObservableCollection<ViewItem> Views => 
     [
@@ -40,6 +41,8 @@ public class MainWindowViewModel : ViewModelBase
             CurrentViewModel = targetView;
         }
     }
+
+    public RoutingState Router { get; }
 }
 public class ViewItem
 {
