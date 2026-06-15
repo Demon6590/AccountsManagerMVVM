@@ -1,0 +1,58 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="using:AccountsManagerMVVM.Components"
+        x:Class="AccountsManagerMVVM.Views.AuthWindowView"
+        Title="{StaticResource ResourceKey=Title}"
+
+        Width="350" Height="250"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="../../Templates/ButtonTemplates.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.Styles>
+        <StyleInclude Source="../../Styles/Styles.axaml" />
+    </Window.Styles>
+
+    <StackPanel Orientation="Vertical">
+        <Panel Classes="center">
+            <TextBlock Text="Авторизация"
+                       Classes="title" />
+        </Panel>
+
+        <StackPanel Orientation="Vertical">
+            <c:InputComponentMail Placeholder="Введите логин"
+                                  Label="Логин" 
+                                   Value="{Binding Login, Mode=TwoWay}/>
+            
+            <c:InputComponentPassword Placeholder="Введите пароль"
+                                      Label="Пароль"
+                                      Value="{Binding Password, Mode=TwoWay}/>
+       </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Classes="center">
+            <Button Content="Войти"
+                    Classes="login"
+                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}"
+                    Command="{Binding Path=UserLoginCommand}" />
+            <Button Content="Отмена"
+                    Classes="cancel"
+                    Template="{StaticResource ResourceKey=ButtonRightTemplate}"
+                    Command="{Binding Path=CancelCommand}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Classes="center">
+            <HyperlinkButton Content="Зарегистрироваться"
+                             Click="Open_RegistrationWindow_OnClick" />
+            <HyperlinkButton Content="Забыли пароль?"
+                             Click="Open_RestoringAccessWindow_OnClick" />
+        </StackPanel>
+
+    </StackPanel>
+</Window>
