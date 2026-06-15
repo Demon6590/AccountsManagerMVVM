@@ -48,6 +48,19 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
         HostScreen.Router.NavigateAndReset.Execute(nextViewModel);
 
     }
+    [ReactiveCommand]
+    private void OpenRegistration()
+    {
 
+        var registerVm = new RegistrationWindowViewModel(HostScreen);
+        HostScreen.Router.Navigate.Execute(registerVm);
+    }
 
+    [ReactiveCommand]
+    private void OpenRestoringAccess()
+    {
+
+        var restoreVm = new RestoringAccessWindowViewModel(HostScreen);
+        HostScreen.Router.Navigate.Execute(restoreVm);
+    }
 }

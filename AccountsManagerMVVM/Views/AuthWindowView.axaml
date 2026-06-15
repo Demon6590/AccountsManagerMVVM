@@ -46,13 +46,13 @@
                     Template="{StaticResource ResourceKey=ButtonRightTemplate}"
                     Command="{Binding Path=CancelCommand}" />
         </StackPanel>
-        <!-- <StackPanel Orientation="Horizontal" -->
-        <!--             Classes="center"> -->
-        <!--     <HyperlinkButton Content="Зарегистрироваться" -->
-        <!--                      Click="Open_RegistrationWindow_OnClick" /> -->
-        <!--     <HyperlinkButton Content="Забыли пароль?" -->
-        <!--                      Click="Open_RestoringAccessWindow_OnClick" /> -->
-        <!-- </StackPanel> -->
+        <StackPanel Orientation="Horizontal"
+                    Classes="center">
+            <HyperlinkButton Content="Зарегистрироваться"
+                             Command="{Binding OpenRegistrationCommand}" />
+            <HyperlinkButton Content="Забыли пароль?"
+                             Command="{Binding OpenRestoringAccessCommand}" />
+        </StackPanel>
 
     </StackPanel>
 </Window>
