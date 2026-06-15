@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Linq;
 using Avalonia.Interactivity;
+using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 namespace AccountsManagerMVVM.ViewModels;
 using System;
 using Avalonia.Interactivity;
 
-using MsBox.Avalonia;
-public class AuthWindowViewModel : ViewModelBase
-{
-    [ReactiveProperty] 
+public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
+{    
+    
+    public string? UrlPathSegment => "auth";
+    public IScreen HostScreen { get; }
+    public AuthWindowViewModel(IScreen hostScreen)
+    {
+        HostScreen = hostScreen;
+    }
+
+    [Reactive]
     private string _login = string.Empty;
     
-    [ReactiveProperty] 
+    [Reactive]
     private string _password = string.Empty;
 
     [ReactiveCommand]
@@ -27,20 +35,19 @@ public class AuthWindowViewModel : ViewModelBase
 
         if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
         {
-            await MessageBoxManager
-                .GetMessageBoxStandard("Ошибка", "Поля почты и пароля не могут быть пустыми")
-                .ShowAsync();
             return;
         }
 
         var listUsers=App.DbContext.GetAllUsers();
         if (!listUsers.Any(u => string.Equals(u.Email, Login)))
         {
-            await MessageBoxManager
-                .GetMessageBoxStandard("Ошибка авторизаций", "Пользователь с такой почтой не зарегистрирован")
-                .ShowAsync();
             return;
         }
-        
+
+        var nextViewModel = new MainWorkViewModel(HostScreen);
+        HostScreen.Router.NavigateAndReset.Execute(nextViewModel);
+
     }
+
+
 }

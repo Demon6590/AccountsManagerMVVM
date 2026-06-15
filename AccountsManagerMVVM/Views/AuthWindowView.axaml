@@ -28,11 +28,11 @@
         <StackPanel Orientation="Vertical">
             <c:InputComponentMail Placeholder="Введите логин"
                                   Label="Логин" 
-                                   Value="{Binding Login, Mode=TwoWay}/>
+                                   Value="{Binding Login, Mode=TwoWay}"/>
             
             <c:InputComponentPassword Placeholder="Введите пароль"
                                       Label="Пароль"
-                                      Value="{Binding Password, Mode=TwoWay}/>
+                                      Value="{Binding Password, Mode=TwoWay}"/>
        </StackPanel>
 
         <StackPanel Orientation="Horizontal"
@@ -46,13 +46,13 @@
                     Template="{StaticResource ResourceKey=ButtonRightTemplate}"
                     Command="{Binding Path=CancelCommand}" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal"
-                    Classes="center">
-            <HyperlinkButton Content="Зарегистрироваться"
-                             Click="Open_RegistrationWindow_OnClick" />
-            <HyperlinkButton Content="Забыли пароль?"
-                             Click="Open_RestoringAccessWindow_OnClick" />
-        </StackPanel>
+        <!-- <StackPanel Orientation="Horizontal" -->
+        <!--             Classes="center"> -->
+        <!--     <HyperlinkButton Content="Зарегистрироваться" -->
+        <!--                      Click="Open_RegistrationWindow_OnClick" /> -->
+        <!--     <HyperlinkButton Content="Забыли пароль?" -->
+        <!--                      Click="Open_RestoringAccessWindow_OnClick" /> -->
+        <!-- </StackPanel> -->
 
     </StackPanel>
 </Window>

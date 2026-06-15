@@ -2,6 +2,6 @@
 
 namespace AccountsManagerMVVM.ViewModels;
 
-public abstract class ViewModelBase : ReactiveObject
-{
+public abstract class ViewModelBase : ReactiveObject 
+{    
 }
