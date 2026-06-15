@@ -6,17 +6,17 @@ using AccountsManagerMVVM.Models;
 namespace AccountsManagerMVVM;
 
 using Dapper;
-using Microsoft.Data.Sqlite;
+using Npgsql;
 
 public class DbContext
 {
     private string ConnectionString { get; }
-    private SqliteConnection _db;
+    private NpgsqlConnection _db;
 
     public DbContext(string connectionString)
     {
         ConnectionString = connectionString;
-        _db = new SqliteConnection(ConnectionString);
+        _db = new NpgsqlConnection(ConnectionString);
     }
 
     public IEnumerable<User> GetAllUsers()
