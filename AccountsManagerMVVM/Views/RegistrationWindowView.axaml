@@ -2,7 +2,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:c="using:AccountsManagerMVVM.Components"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AccountsManagerMVVM.Views.RegistrationWindowView">
-    Welcome to Avalonia!
+    <StackPanel Orientation="Vertical">
+        <Panel Classes="center">
+            <TextBlock Text="Регистрация"
+                       Classes="title" />
+        </Panel>
+
+        <StackPanel Orientation="Vertical">
+            <c:InputComponentMail Placeholder="Введите почту"
+                                  Label="Почта" />
+            <c:InputComponentPassword Placeholder="Введите пароль"
+                                      Label="Пароль" />
+            <c:InputComponentPasswordConfirm Placeholder="Введите пароль повторно"
+                                             Label="Повторите пароль" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Classes="center">
+            <Button Content="Зарегистрироваться"
+                    Classes="login"
+                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}"/>
+            <Button Content="Отмена"
+                    Classes="cancel"
+                    Template="{StaticResource ResourceKey=ButtonRightTemplate}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Classes="center">
+            <HyperlinkButton Content="Уже есть аккаунт? Войти"/>
+            <HyperlinkButton Content="Восстановить доступ"/>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
