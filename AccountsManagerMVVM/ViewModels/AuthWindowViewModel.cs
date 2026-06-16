@@ -22,4 +22,39 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
     
     [Reactive]
     private string _password = string.Empty;
+    [ReactiveCommand]
+    private void UserLogin()
+    {
+        if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
+        {
+            return;
+        }
+        
+        // var listUsers = App.DbContext.GetAllUsers();
+        // if (!listUsers.Any(u => string.Equals(u.Email, Login)))
+        // {
+        //     return;
+        // }
+
+        var nextViewModel = new MainWorkViewModel(HostScreen);
+        HostScreen.Router.NavigateAndReset.Execute(nextViewModel);
+    }
+    [ReactiveCommand]
+    private void Cancel()
+    {
+        Environment.Exit(0);
+    }
+    [ReactiveCommand]
+    private void OpenRegistration()
+    {
+        var registerVm = new RegistrationWindowViewModel(HostScreen);
+        HostScreen.Router.Navigate.Execute(registerVm);
+    }
+
+    [ReactiveCommand]
+    private void OpenRestoringAccess()
+    {
+        var restoreVm = new RestoringAccessWindowViewModel(HostScreen);
+        HostScreen.Router.Navigate.Execute(restoreVm);
+    }
 }

@@ -11,4 +11,17 @@ public partial class RegistrationWindowViewModel : ViewModelBase,IRoutableViewMo
     {
         HostScreen = hostScreen;
     }
+    
+    [Reactive]
+    private string _lastName = string.Empty;
+    [Reactive]
+    private string _firstName = string.Empty;
+    [Reactive]
+    private string _patronymic = string.Empty;
+    [Reactive]
+    private string _email = string.Empty;
+    [Reactive]
+    private string _password = string.Empty;
+    
+    
 }

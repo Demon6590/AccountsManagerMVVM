@@ -13,6 +13,7 @@
         <FluentTheme />
         <StyleInclude Source="avares://AccountsManagerMVVM/Styles/Styles.axaml" />
     </Application.Styles>
+    
     <Application.Resources>
         <ResourceDictionary>
                  <x:String x:Key="Title">Менеджер аккаунтов</x:String>           
@@ -20,7 +21,7 @@
                 <ResourceInclude Source="avares://AccountsManagerMVVM/Templates/ButtonBaseTemplate.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
-        
     </Application.Resources>
+    
+    
 </Application>

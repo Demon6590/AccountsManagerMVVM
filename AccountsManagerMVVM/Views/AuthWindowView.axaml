@@ -1,24 +1,37 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:c="using:AccountsManagerMVVM.Components"
-             x:Class="AccountsManagerMVVM.Views.AuthWindowView">
+             xmlns:vm="using:AccountsManagerMVVM.ViewModels"
+             x:Class="AccountsManagerMVVM.Views.AuthWindowView"
+             x:DataType="vm:AuthWindowViewModel">
     <StackPanel Orientation="Vertical">
         <Panel Classes="center">
             <TextBlock Text="Авторизация" Classes="title"/>
         </Panel>
         <StackPanel>
-            <c:InputComponentMail Placeholder="ведите логин" Label="Логин" />
+            <c:InputComponentMail Placeholder="ведите логин"
+                                  Label="Логин"
+                                  Value="{Binding Login, Mode=TwoWay}"/>
             
-            <c:InputComponentPassword Placeholder="ведите пароль" Label="Пароль"/>
+            <c:InputComponentPassword Placeholder="ведите пароль"
+                                      Label="Пароль"
+                                      Value="{Binding Password, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Classes="cancel">
-            <Button Content="Войти" Classes="login" Template="{StaticResource ResourceKey=ButtonLeftTemplate}"/>
-            <Button Content="Отмена" Classes="cancel" Template="{StaticResource ResourceKey=ButtonRightTemplate}"/>
+            <Button Content="Войти" 
+                    Classes="login" Template="{StaticResource ResourceKey=ButtonLeftTemplate}"
+                    Command="{Binding UserLoginCommand}"/>
+            <Button Content="Отмена" 
+                    Classes="cancel"
+                    Template="{StaticResource ResourceKey=ButtonRightTemplate}"
+                    Command="{Binding CancelCommand}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Classes="cancel">
-            <HyperlinkButton Content="Зарегистрироваться"/>
+            <HyperlinkButton Content="Зарегистрироваться"
+                             Command="{Binding OpenRegistrationCommand}"/>
             
-            <HyperlinkButton Content="Забыл пароль?"/>
+            <HyperlinkButton Content="Забыл пароль?"
+                             Command="{Binding OpenRestoringAccessCommand}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

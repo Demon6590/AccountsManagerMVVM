@@ -1,9 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AccountsManagerMVVM.ViewModels"
              xmlns:c="using:AccountsManagerMVVM.Components"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:RegistrationWindowViewModel"
              x:Class="AccountsManagerMVVM.Views.RegistrationWindowView">
     <StackPanel Orientation="Vertical">
         <Panel Classes="center">
@@ -12,10 +11,21 @@
         </Panel>
 
         <StackPanel Orientation="Vertical">
+            <c:InputComponent Placeholder="Введите фамилию"
+                              Label="Фамилия"
+                              Value="{Binding LastName, Mode=TwoWay}" />
+            <c:InputComponent Placeholder="Введите имя"
+                              Label="Имя"
+                              Value="{Binding FirstName, Mode=TwoWay}" />
+            <c:InputComponent Placeholder="Введите отчество"
+                              Label="Отчество"
+                              Value="{Binding Patronymic, Mode=TwoWay}" />
             <c:InputComponentMail Placeholder="Введите почту"
-                                  Label="Почта" />
+                                  Label="Почта"
+                                  Value="{Binding Email, Mode=TwoWay}" />
             <c:InputComponentPassword Placeholder="Введите пароль"
-                                      Label="Пароль" />
+                                      Label="Пароль"
+                                      Value="{Binding Password, Mode=TwoWay}" />
             <c:InputComponentPasswordConfirm Placeholder="Введите пароль повторно"
                                              Label="Повторите пароль" />
         </StackPanel>
@@ -24,15 +34,15 @@
                     Classes="center">
             <Button Content="Зарегистрироваться"
                     Classes="login"
-                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}"/>
+                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}" />
             <Button Content="Отмена"
                     Classes="cancel"
                     Template="{StaticResource ResourceKey=ButtonRightTemplate}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     Classes="center">
-            <HyperlinkButton Content="Уже есть аккаунт? Войти"/>
-            <HyperlinkButton Content="Восстановить доступ"/>
+            <HyperlinkButton Content="Уже есть аккаунт? Войти" />
+            <HyperlinkButton Content="Восстановить доступ" />
         </StackPanel>
     </StackPanel>
 </UserControl>
