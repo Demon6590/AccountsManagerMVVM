@@ -1,58 +1,23 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:c="using:AccountsManagerMVVM.Components"
-        x:Class="AccountsManagerMVVM.Views.AuthWindowView"
-        Title="{StaticResource ResourceKey=Title}"
-
-        Width="350" Height="250"
-        WindowStartupLocation="CenterScreen">
-
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="../../Templates/ButtonTemplates.axaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-
-    <Window.Styles>
-        <StyleInclude Source="../../Styles/Styles.axaml" />
-    </Window.Styles>
-
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:components="clr-namespace:AccountsManagerMVVM.Components"
+             x:Class="AccountsManagerMVVM.Views.AuthWindowView">
     <StackPanel Orientation="Vertical">
-        <Panel Classes="center">
-            <TextBlock Text="Авторизация"
-                       Classes="title" />
+        <Panel>
+            <TextBlock Text="Авторизация" />
         </Panel>
-
-        <StackPanel Orientation="Vertical">
-            <c:InputComponentMail Placeholder="Введите логин"
-                                  Label="Логин" 
-                                   Value="{Binding Login, Mode=TwoWay}"/>
+        <StackPanel>
+            <components:InputComponentMail Placeholder="ведите логин" Label="Логин" />
+            <components:InputComponentPassword Placeholder="ведите пароль" Label="пароль"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Войти" Classes="Flat"/>
+            <Button Content="Отмена" Classes="Flat"/>
+        </StackPanel>
+        <StackPanel>
+            <HyperlinkButton Content="Зарегистрироваться"/>
             
-            <c:InputComponentPassword Placeholder="Введите пароль"
-                                      Label="Пароль"
-                                      Value="{Binding Password, Mode=TwoWay}"/>
-       </StackPanel>
-
-        <StackPanel Orientation="Horizontal"
-                    Classes="center">
-            <Button Content="Войти"
-                    Classes="login"
-                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}"
-                    Command="{Binding Path=UserLoginCommand}" />
-            <Button Content="Отмена"
-                    Classes="cancel"
-                    Template="{StaticResource ResourceKey=ButtonRightTemplate}"
-                    Command="{Binding Path=CancelCommand}" />
+            <HyperlinkButton Content="Забыл пароль?"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal"
-                    Classes="center">
-            <HyperlinkButton Content="Зарегистрироваться"
-                             Command="{Binding OpenRegistrationCommand}" />
-            <HyperlinkButton Content="Забыли пароль?"
-                             Command="{Binding OpenRestoringAccessCommand}" />
-        </StackPanel>
-
     </StackPanel>
-</Window>
+</UserControl>
