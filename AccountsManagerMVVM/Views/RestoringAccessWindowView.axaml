@@ -1,7 +1,10 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:AccountsManagerMVVM.ViewModels"
              xmlns:c="using:AccountsManagerMVVM.Components"
+             x:DataType="vm:RegistrationWindowViewModel"
              x:Class="AccountsManagerMVVM.Views.RestoringAccessWindowView">
+        
     <StackPanel Orientation="Vertical">
         <Panel Classes="center">
             <TextBlock Text="Восстановление доступа"
@@ -9,7 +12,8 @@
         </Panel>
         <StackPanel Orientation="Vertical">
             <c:InputComponentMail Placeholder="Введите почту"
-                                  Label="Электронная почта" />
+                                  Label="Электронная почта"
+                                  Value="{Binding Email, Mode=TwoWay}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"

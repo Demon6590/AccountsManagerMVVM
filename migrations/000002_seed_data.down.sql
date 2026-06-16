@@ -1,0 +1,1 @@
+TRUNCATE TABLE table_accounts, table_persons RESTART IDENTITY CASCADE;

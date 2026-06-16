@@ -12,4 +12,6 @@ public partial class RestoringAccessWindowViewModel : ViewModelBase,IRoutableVie
     {
         HostScreen = hostScreen;
     }
+    [Reactive]
+    private string _email = string.Empty;
 }
