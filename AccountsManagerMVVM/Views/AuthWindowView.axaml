@@ -1,20 +1,21 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:components="clr-namespace:AccountsManagerMVVM.Components"
+             xmlns:c="using:AccountsManagerMVVM.Components"
              x:Class="AccountsManagerMVVM.Views.AuthWindowView">
     <StackPanel Orientation="Vertical">
-        <Panel>
-            <TextBlock Text="Авторизация" />
+        <Panel Classes="center">
+            <TextBlock Text="Авторизация" Classes="title"/>
         </Panel>
         <StackPanel>
-            <components:InputComponentMail Placeholder="ведите логин" Label="Логин" />
-            <components:InputComponentPassword Placeholder="ведите пароль" Label="пароль"/>
+            <c:InputComponentMail Placeholder="ведите логин" Label="Логин" />
+            
+            <c:InputComponentPassword Placeholder="ведите пароль" Label="Пароль"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Button Content="Войти" Classes="Flat"/>
-            <Button Content="Отмена" Classes="Flat"/>
+        <StackPanel Orientation="Horizontal" Classes="cancel">
+            <Button Content="Войти" Classes="login" Template="{StaticResource ResourceKey=ButtonLeftTemplate}"/>
+            <Button Content="Отмена" Classes="cancel" Template="{StaticResource ResourceKey=ButtonRightTemplate}"/>
         </StackPanel>
-        <StackPanel>
+        <StackPanel Orientation="Horizontal" Classes="cancel">
             <HyperlinkButton Content="Зарегистрироваться"/>
             
             <HyperlinkButton Content="Забыл пароль?"/>
