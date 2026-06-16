@@ -18,7 +18,7 @@
   
   migrations:
     container_name: test_migrations
-      image: migrate/migrate
+    image: migrate/migrate
     volumes:
       - ./migrations:/migrations
 

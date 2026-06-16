@@ -1,0 +1,1 @@
+﻿DROP VIEW IF EXISTS view_persons_and_accounts;
