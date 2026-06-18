@@ -62,4 +62,42 @@ public class DbContext
         }
         
     }
+
+    public bool UpdateUser(User user)
+    {
+        using (_db)
+        {
+            _db.Open();
+            const string sql1 = """
+                                UPDATE table_persons 
+                                SET last_name = @LastName, 
+                                    first_name = @FirstName, 
+                                    patronymic = @Patronymic
+                                WHERE id = @PersonId;
+                                """;
+            var rowsPerson = _db.Execute(sql1, new
+            {
+                LastName = user.LastName,
+                FirstName = user.FirstName,
+                Patronymic = user.Patronymic,
+                PersonId = user.PersonId
+            });
+            const string sql2 = """
+                                UPDATE table_accounts 
+                                SET email = @Email, 
+                                    password = @Password
+                                WHERE person_id = @PersonId;
+                                """;
+
+            var rowsAccount = _db.Execute(sql2, new
+            {
+                Email = user.Email,
+                Password = user.Password,
+                PersonId = user.PersonId
+            });
+            return rowsPerson > 0 && rowsAccount > 0;
+        }
+
+    }
+
 }

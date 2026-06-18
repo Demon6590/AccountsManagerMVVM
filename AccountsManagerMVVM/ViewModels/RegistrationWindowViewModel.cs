@@ -57,7 +57,11 @@ public partial class RegistrationWindowViewModel : ViewModelBase, IRoutableViewM
         }
 
         UserInsert newUser = new UserInsert(LastName, FirstName, Patronymic, Email, Password);
-        App.DbPostgres.AddUser(newUser);
+        bool addUser = App.DbPostgres.AddUser(newUser);
+        if (!addUser)
+        {
+            return;
+        }
 
         var nextViewModel = new AuthWindowViewModel(HostScreen);
         HostScreen.Router.NavigateAndReset.Execute(nextViewModel);
@@ -74,13 +78,13 @@ public partial class RegistrationWindowViewModel : ViewModelBase, IRoutableViewM
     [ReactiveCommand]
     public void OpenAuthWindow()
     {
-        HostScreen.Router.NavigateAndReset.Execute(new AuthWindowViewModel(HostScreen));
+        HostScreen.Router.Navigate.Execute(new AuthWindowViewModel(HostScreen));
     }
 
 
     [ReactiveCommand]
     public void OpenRestoringAccessWindow()
     {
-        HostScreen.Router.NavigateAndReset.Execute(new RestoringAccessWindowViewModel(HostScreen));
+        HostScreen.Router.Navigate.Execute(new RestoringAccessWindowViewModel(HostScreen));
     }
 }

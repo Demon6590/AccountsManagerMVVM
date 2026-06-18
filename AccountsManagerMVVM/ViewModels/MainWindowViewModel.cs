@@ -11,7 +11,6 @@ public partial class MainWindowViewModel : ViewModelBase,IScreen
 
     public MainWindowViewModel()
     {
-        Router.Navigate.Execute(new AuthWindowViewModel(this));
+        Router.NavigateAndReset.Execute(new AuthWindowViewModel(this));
     }
-    
 }

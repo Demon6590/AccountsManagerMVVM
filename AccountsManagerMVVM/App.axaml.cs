@@ -28,8 +28,8 @@ public partial class App : Application
         Locator.CurrentMutable.Register(() => new AvaloniaActivationForViewFetcher(),
             typeof(IActivationForViewFetcher));
     
+        Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetExecutingAssembly());
 
-        Locator.CurrentMutable.RegisterViewsForViewModels(Assembly.GetCallingAssembly());
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {

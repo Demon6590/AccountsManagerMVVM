@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:AccountsManagerMVVM.ViewModels"
              xmlns:c="using:AccountsManagerMVVM.Components"
-             x:DataType="vm:RegistrationWindowViewModel"
+             x:DataType="vm:RestoringAccessWindowViewModel"
              x:Class="AccountsManagerMVVM.Views.RestoringAccessWindowView">
         
     <StackPanel Orientation="Vertical">
@@ -20,10 +20,12 @@
                     Classes="center">
             <Button Content="Восстановить пароль"
                     Classes="login"
-                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}" />
+                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}"
+                    Command="{Binding RecoverPasswordCommand}"/>
             <Button Content="Назад"
                     Classes="cancel"
-                    Template="{StaticResource ResourceKey=ButtonRightTemplate}"/>
+                    Template="{StaticResource ResourceKey=ButtonRightTemplate}"
+                    Command="{Binding OpenPreviousWindowCommand}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

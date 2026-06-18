@@ -28,7 +28,7 @@
                                       Value="{Binding Password, Mode=TwoWay}" />
             <c:InputComponentPasswordConfirm Placeholder="Введите пароль повторно"
                                              Label="Повторите пароль" 
-                                             Value="{Binding PasswordConfirm, Mode=TwoWay}" />/>
+                                             Value="{Binding PasswordConfirm, Mode=TwoWay}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
