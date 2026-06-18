@@ -9,9 +9,9 @@
             <TextBlock Text="Авторизация" Classes="title"/>
         </Panel>
         <StackPanel>
-            <c:InputComponentMail Placeholder="ведите логин"
+            <c:InputComponentMail Placeholder="Почта"
                                   Label="Логин"
-                                  Value="{Binding Login, Mode=TwoWay}"
+                                  Value="{Binding Emael, Mode=TwoWay}"
                                   HasErrors="{Binding EmailHasError, Mode=TwoWay}" />
             
             <c:InputComponentPassword Placeholder="ведите пароль"

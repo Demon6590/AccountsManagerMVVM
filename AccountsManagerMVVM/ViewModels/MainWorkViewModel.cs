@@ -16,8 +16,20 @@ public class MainWorkViewModel : ViewModelBase, IRoutableViewModel
         CurrentUser = currentUser;
         HostScreen = hostScreen;
         FilteredUsers();
-    }
+        this.WhenAnyValue(x => x.SelectedUser)
+            .Subscribe(user =>
+            {
+                if (user != null)
+                {
 
+                    var editViewModel = new СhangesWindowViewModel(HostScreen, user);
+                    HostScreen.Router.Navigate.Execute(editViewModel);
+                    
+                    SelectedUser = null; 
+                }
+            });
+    }
+    [Reactive] private User? _selectedUser;
     public User CurrentUser { get; }
     public ObservableCollection<User> Users { get; } = new();
 

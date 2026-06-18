@@ -1,0 +1,45 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:components="clr-namespace:AccountsManagerMVVM.Components"
+             xmlns:vm="using:AccountsManagerMVVM.ViewModels"
+             x:Class="AccountsManagerMVVM.Views.СhangesWindowView"
+             x:DataType="vm:СhangesWindowViewModel">
+
+    <StackPanel Orientation="Vertical">
+        <Panel Classes="center">
+            <TextBlock Text="Авторизация" Classes="title"/>
+        </Panel>
+        <StackPanel>
+            <components:InputComponent Placeholder="{Binding LastName, Mode=TwoWay}"
+                              Label="Фамилия"
+                              Value="{Binding LastName, Mode=TwoWay}" />
+
+            <components:InputComponent Placeholder="{Binding FirstName, Mode=TwoWay}"
+                              Label="Имя"
+                              Value="{Binding FirstName, Mode=TwoWay}" />
+
+            <components:InputComponent Placeholder="{Binding Patronymic, Mode=TwoWay}"
+                              Label="Отчество"
+                              Value="{Binding Patronymic, Mode=TwoWay}" />
+
+            <components:InputComponentMail Placeholder="{Binding Email, Mode=TwoWay}"
+                                  Label="Почта"
+                                  Value="{Binding Email, Mode=TwoWay}"
+                                  HasErrors="{Binding EmailHasError, Mode=TwoWay}" />
+
+            <components:InputComponentPassword Placeholder="{Binding Password, Mode=TwoWay}"
+                                      Label="Пароль"
+                                      Value="{Binding Password, Mode=TwoWay}"
+                                      HasErrors="{Binding PasswordHasError, Mode=TwoWay}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Classes="cancel">
+            <Button Content="Сохранить" 
+                    Classes="login" Template="{StaticResource ResourceKey=ButtonLeftTemplate}"
+                    Command="{Binding SaveCommand}"/>
+            <Button Content="Назад" 
+                    Classes="cancel"
+                    Template="{StaticResource ResourceKey=ButtonRightTemplate}"
+                    Command="{Binding CancelCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

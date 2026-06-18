@@ -4,7 +4,9 @@
              xmlns:models="clr-namespace:AccountsManagerMVVM.Models"
              x:DataType="vm:MainWorkViewModel"
              x:Class="AccountsManagerMVVM.Views.MainWorkView">
-    <ListBox x:Name="UsersList" ItemsSource="{Binding Users}" Margin="10">
+    <ListBox ItemsSource="{Binding Users}" 
+             SelectedItem="{Binding SelectedUser, Mode=TwoWay}" 
+             Margin="10">
         <ListBox.ItemTemplate>
             <DataTemplate x:DataType="models:User">
                 <StackPanel Orientation="Horizontal" 
