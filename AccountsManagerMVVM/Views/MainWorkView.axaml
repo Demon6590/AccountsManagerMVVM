@@ -1,8 +1,18 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:AccountsManagerMVVM.ViewModels"
+             xmlns:models="clr-namespace:AccountsManagerMVVM.Models"
+             x:DataType="vm:MainWorkViewModel"
              x:Class="AccountsManagerMVVM.Views.MainWorkView">
-
+    <ListBox x:Name="UsersList" ItemsSource="{Binding Users}" Margin="10">
+        <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="models:User">
+                <StackPanel Orientation="Horizontal" 
+                            Spacing="6" 
+                            Background="Transparent" >
+                    <TextBlock Text="{Binding FullName}" FontSize="16"/>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>

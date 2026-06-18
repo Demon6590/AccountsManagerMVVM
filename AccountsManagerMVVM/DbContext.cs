@@ -11,36 +11,36 @@ using Npgsql;
 public class DbContext
 {
     private string ConnectionString { get; }
-    private NpgsqlConnection _db;
+
 
     public DbContext(string connectionString)
     {
         ConnectionString = connectionString;
-        _db = new NpgsqlConnection(ConnectionString);
+
     }
 
     public IEnumerable<User> GetAllUsers()
     {
-        using (_db)
+        using (var db = new NpgsqlConnection(ConnectionString))
         {
-            _db.Open();
+            db.Open();
             const string sql =
                 "SELECT person_id, last_name, first_name,patronymic, email,password  FROM view_persons_and_accounts";
-            return _db.Query<User>(sql);
+            return db.Query<User>(sql);
         }
     }
 
     public bool AddUser(UserInsert user)
     {
-        using (_db)
+        using (var db = new NpgsqlConnection(ConnectionString))
         {
-            _db.Open();
+            db.Open();
             const string sql1 = """
                                 INSERT INTO table_persons(last_name, first_name, patronymic)
                                 VALUES (@LastName, @FirstName, @Patronymic)
                                 RETURNING id;
                                 """;
-            var personId  = _db.QuerySingle(sql1,new
+            var personId  = db.QuerySingle(sql1,new
             {
                 LastName = user.LastName,
                 FirstName = user.FirstName,
@@ -51,7 +51,7 @@ public class DbContext
                                 INSERT INTO table_accounts(email, password,person_id)
                                 VALUES (@Email, @Password, @PersonId);
                                 """;
-            var command2 = _db.Execute(sql2, new
+            var command2 = db.Execute(sql2, new
             {
                 Email = user.Email,
                 Password = user.Password,
@@ -65,9 +65,9 @@ public class DbContext
 
     public bool UpdateUser(User user)
     {
-        using (_db)
+        using (var db = new NpgsqlConnection(ConnectionString))
         {
-            _db.Open();
+            db.Open();
             const string sql1 = """
                                 UPDATE table_persons 
                                 SET last_name = @LastName, 
@@ -75,7 +75,7 @@ public class DbContext
                                     patronymic = @Patronymic
                                 WHERE id = @PersonId;
                                 """;
-            var rowsPerson = _db.Execute(sql1, new
+            var rowsPerson = db.Execute(sql1, new
             {
                 LastName = user.LastName,
                 FirstName = user.FirstName,
@@ -89,7 +89,7 @@ public class DbContext
                                 WHERE person_id = @PersonId;
                                 """;
 
-            var rowsAccount = _db.Execute(sql2, new
+            var rowsAccount = db.Execute(sql2, new
             {
                 Email = user.Email,
                 Password = user.Password,

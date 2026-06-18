@@ -11,11 +11,13 @@
         <StackPanel>
             <c:InputComponentMail Placeholder="ведите логин"
                                   Label="Логин"
-                                  Value="{Binding Login, Mode=TwoWay}"/>
+                                  Value="{Binding Login, Mode=TwoWay}"
+                                  HasErrors="{Binding EmailHasError, Mode=TwoWay}" />
             
             <c:InputComponentPassword Placeholder="ведите пароль"
                                       Label="Пароль"
-                                      Value="{Binding Password, Mode=TwoWay}"/>
+                                      Value="{Binding Password, Mode=TwoWay}"
+                                      HasErrors="{Binding PasswordHasError, Mode=TwoWay}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Classes="cancel">
             <Button Content="Войти" 

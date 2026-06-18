@@ -22,6 +22,13 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
     
     [Reactive]
     private string _password = string.Empty;
+    
+    
+    [Reactive] 
+    private bool _emailHasError;
+    [Reactive]
+    private bool _passwordHasError;
+    
     [ReactiveCommand]
     private void UserLogin()
     {
@@ -29,14 +36,24 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
         {
             return;
         }
+        if (_emailHasError)
+        {
+            return;
+        }
+        if (_emailHasError)
+        {
+            return;
+        }
         
         var listUsers = App.DbPostgres.GetAllUsers();
-        if (!listUsers.Any(u => string.Equals(u.Email, Login)))
+        
+        var user = listUsers.FirstOrDefault(u => string.Equals(u.Email, Login) && string.Equals(u.Password, Password));
+        if (user == null)
         {
             return;
         }
 
-        var nextViewModel = new MainWorkViewModel(HostScreen);
+        var nextViewModel = new MainWorkViewModel(HostScreen, user);
         HostScreen.Router.NavigateAndReset.Execute(nextViewModel);
     }
     [ReactiveCommand]
