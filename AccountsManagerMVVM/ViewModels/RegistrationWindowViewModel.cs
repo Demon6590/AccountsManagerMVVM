@@ -16,16 +16,29 @@ public partial class RegistrationWindowViewModel : ViewModelBase, IRoutableViewM
         HostScreen = hostScreen;
     }
 
-    [Reactive] private string _lastName = string.Empty;
-    [Reactive] private string _firstName = string.Empty;
-    [Reactive] private string _patronymic = string.Empty;
-    [Reactive] private string _email = string.Empty;
-    [Reactive] private string _password = string.Empty;
-    [Reactive] private string _passwordConfirm = string.Empty;
+    [Reactive] 
+    private string _lastName = string.Empty;
+    [Reactive] 
+    private string _firstName = string.Empty;
+    [Reactive] 
+    private string _patronymic = string.Empty;
+    [Reactive] 
+    private string _email = string.Empty;
+    [Reactive] 
+    private string _password = string.Empty;
+    [Reactive] 
+    private string _passwordConfirm = string.Empty;
+
+
+    [Reactive] 
+    private bool _emailHasError;
+    [Reactive]
+    private bool _passwordHasError;
 
     [ReactiveCommand]
     public void Login()
     {
+        
         if (string.IsNullOrWhiteSpace(LastName))
         {
             return;
@@ -50,7 +63,14 @@ public partial class RegistrationWindowViewModel : ViewModelBase, IRoutableViewM
         {
             return;
         }
-
+        if (EmailHasError)
+        {
+            return;
+        }
+        if (PasswordHasError)
+        {
+            return;
+        }
         if (PasswordConfirm != Password)
         {
             return;

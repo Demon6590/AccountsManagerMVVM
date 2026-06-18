@@ -34,7 +34,14 @@ public partial class InputComponentMail : UserControl
         get => this.GetValue<string?>(InputComponentMail.PlaceholderProperty);
         set => this.SetValue(InputComponentMail.PlaceholderProperty, value);
     }
+    public static readonly StyledProperty<bool> HasErrorsProperty =
+        AvaloniaProperty.Register<InputComponent, bool>(nameof(HasErrors), defaultValue: false);
 
+    public bool HasErrors
+    {
+        get => GetValue(HasErrorsProperty);
+        set => SetValue(HasErrorsProperty, value);
+    }
     public InputComponentMail()
     {
         InitializeComponent();
@@ -62,6 +69,7 @@ public partial class InputComponentMail : UserControl
         if (string.IsNullOrWhiteSpace(text))
         {
             DataValidationErrors.SetError(textBox, new Exception("E-mail не может быть пустым"));
+            HasErrors = true; 
             return;
         }
 
@@ -70,12 +78,12 @@ public partial class InputComponentMail : UserControl
         {
             DataValidationErrors.SetError(textBox,
                 new Exception("Некорректный формат e-mail (пример: user@example.com)"));
+            HasErrors = true; 
             return;
         }
 
 
         DataValidationErrors.ClearErrors(textBox);
+        HasErrors = false;
     }
-
-    public bool HasErrors => DataValidationErrors.GetHasErrors(this.FindControl<TextBox>("Input"));
 }

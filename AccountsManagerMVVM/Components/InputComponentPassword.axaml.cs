@@ -35,6 +35,14 @@ public partial class InputComponentPassword : UserControl
         set => this.SetValue(InputComponentPassword.PlaceholderProperty, value);
     }
 
+    public static readonly StyledProperty<bool> HasErrorsProperty =
+        AvaloniaProperty.Register<InputComponent, bool>(nameof(HasErrors), defaultValue: false);
+
+    public bool HasErrors
+    {
+        get => GetValue(HasErrorsProperty);
+        set => SetValue(HasErrorsProperty, value);
+    }
     public InputComponentPassword()
     {
         InitializeComponent();
@@ -59,6 +67,7 @@ public partial class InputComponentPassword : UserControl
         if (string.IsNullOrEmpty(text))
         {
             DataValidationErrors.SetError(textBox, new Exception("Пароль не может быть пустым"));
+            HasErrors = true;
             return;
         }
 
@@ -66,6 +75,7 @@ public partial class InputComponentPassword : UserControl
         if (text.Length < 8)
         {
             DataValidationErrors.SetError(textBox, new Exception("Длина должна быть не менее 8 символов"));
+            HasErrors = true;
             return;
         }
 
@@ -79,6 +89,7 @@ public partial class InputComponentPassword : UserControl
         {
             DataValidationErrors.SetError(textBox,
                 new Exception("Нужна минимум одна заглавная буква"));
+            HasErrors = true;
             return;
         }
 
@@ -86,6 +97,7 @@ public partial class InputComponentPassword : UserControl
         {
             DataValidationErrors.SetError(textBox,
                 new Exception("Нужна минимум одна строчная буква"));
+            HasErrors = true;
             return;
         }
 
@@ -93,11 +105,11 @@ public partial class InputComponentPassword : UserControl
         {
             DataValidationErrors.SetError(textBox,
                 new Exception("Нужна минимум одна цифра"));
+            HasErrors = true;
             return;
         }
 
         DataValidationErrors.ClearErrors(textBox);
+        HasErrors = false;
     }
-
-    public bool HasErrors => DataValidationErrors.GetHasErrors(this.FindControl<TextBox>("Input"));
 }

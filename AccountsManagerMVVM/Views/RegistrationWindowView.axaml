@@ -14,20 +14,27 @@
             <c:InputComponent Placeholder="Введите фамилию"
                               Label="Фамилия"
                               Value="{Binding LastName, Mode=TwoWay}" />
+
             <c:InputComponent Placeholder="Введите имя"
                               Label="Имя"
                               Value="{Binding FirstName, Mode=TwoWay}" />
+
             <c:InputComponent Placeholder="Введите отчество"
                               Label="Отчество"
                               Value="{Binding Patronymic, Mode=TwoWay}" />
+
             <c:InputComponentMail Placeholder="Введите почту"
                                   Label="Почта"
-                                  Value="{Binding Email, Mode=TwoWay}" />
+                                  Value="{Binding Email, Mode=TwoWay}"
+                                  HasErrors="{Binding EmailHasError, Mode=TwoWay}" />
+
             <c:InputComponentPassword Placeholder="Введите пароль"
                                       Label="Пароль"
-                                      Value="{Binding Password, Mode=TwoWay}" />
+                                      Value="{Binding Password, Mode=TwoWay}"
+                                      HasErrors="{Binding PasswordHasError, Mode=TwoWay}" />
+
             <c:InputComponentPasswordConfirm Placeholder="Введите пароль повторно"
-                                             Label="Повторите пароль" 
+                                             Label="Повторите пароль"
                                              Value="{Binding PasswordConfirm, Mode=TwoWay}" />
         </StackPanel>
 
@@ -35,19 +42,19 @@
                     Classes="center">
             <Button Content="Зарегистрироваться"
                     Classes="login"
-                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}" 
-                    Command="{Binding LoginCommand}"/>
+                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}"
+                    Command="{Binding LoginCommand}" />
             <Button Content="Отмена"
                     Classes="cancel"
-                    Template="{StaticResource ResourceKey=ButtonRightTemplate}" 
-                    Command="{Binding CancelCommand}"/>
+                    Template="{StaticResource ResourceKey=ButtonRightTemplate}"
+                    Command="{Binding CancelCommand}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     Classes="center">
-            <HyperlinkButton Content="Уже есть аккаунт? Войти" 
-                             Command="{Binding OpenAuthWindowCommand}"/>
+            <HyperlinkButton Content="Уже есть аккаунт? Войти"
+                             Command="{Binding OpenAuthWindowCommand}" />
             <HyperlinkButton Content="Восстановить доступ"
-                             Command="{Binding OpenRestoringAccessWindowCommand}"/>
+                             Command="{Binding OpenRestoringAccessWindowCommand}" />
         </StackPanel>
     </StackPanel>
 </UserControl>
