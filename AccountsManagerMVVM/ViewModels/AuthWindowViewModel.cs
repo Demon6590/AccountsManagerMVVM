@@ -30,11 +30,11 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
             return;
         }
         
-        // var listUsers = App.DbContext.GetAllUsers();
-        // if (!listUsers.Any(u => string.Equals(u.Email, Login)))
-        // {
-        //     return;
-        // }
+        var listUsers = App.DbPostgres.GetAllUsers();
+        if (!listUsers.Any(u => string.Equals(u.Email, Login)))
+        {
+            return;
+        }
 
         var nextViewModel = new MainWorkViewModel(HostScreen);
         HostScreen.Router.NavigateAndReset.Execute(nextViewModel);

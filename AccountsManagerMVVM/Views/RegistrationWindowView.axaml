@@ -27,22 +27,27 @@
                                       Label="Пароль"
                                       Value="{Binding Password, Mode=TwoWay}" />
             <c:InputComponentPasswordConfirm Placeholder="Введите пароль повторно"
-                                             Label="Повторите пароль" />
+                                             Label="Повторите пароль" 
+                                             Value="{Binding PasswordConfirm, Mode=TwoWay}" />/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
                     Classes="center">
             <Button Content="Зарегистрироваться"
                     Classes="login"
-                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}" />
+                    Template="{StaticResource ResourceKey=ButtonLeftTemplate}" 
+                    Command="{Binding LoginCommand}"/>
             <Button Content="Отмена"
                     Classes="cancel"
-                    Template="{StaticResource ResourceKey=ButtonRightTemplate}" />
+                    Template="{StaticResource ResourceKey=ButtonRightTemplate}" 
+                    Command="{Binding CancelCommand}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     Classes="center">
-            <HyperlinkButton Content="Уже есть аккаунт? Войти" />
-            <HyperlinkButton Content="Восстановить доступ" />
+            <HyperlinkButton Content="Уже есть аккаунт? Войти" 
+                             Command="{Binding OpenAuthWindowCommand}"/>
+            <HyperlinkButton Content="Восстановить доступ"
+                             Command="{Binding OpenRestoringAccessWindowCommand}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

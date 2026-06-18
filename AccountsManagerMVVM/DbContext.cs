@@ -30,23 +30,22 @@ public class DbContext
         }
     }
 
-    public bool AddUser(User user)
+    public bool AddUser(UserInsert user)
     {
         using (_db)
         {
             _db.Open();
             const string sql1 = """
                                 INSERT INTO table_persons(last_name, first_name, patronymic)
-                                VALUES (@LastName, @FirstName, @Patronymic);
+                                VALUES (@LastName, @FirstName, @Patronymic)
+                                RETURNING id;
                                 """;
-            var command1 = _db.Execute(sql1,new
+            var personId  = _db.QuerySingle(sql1,new
             {
                 LastName = user.LastName,
                 FirstName = user.FirstName,
                 Patronymic = user.Patronymic
             });
-            const string sqlGetId = "SELECT last_insert_rowid();";
-            var personId = _db.QuerySingle<long>(sqlGetId);
             
             const string sql2 = """
                                 INSERT INTO table_accounts(email, password,person_id)
@@ -56,10 +55,10 @@ public class DbContext
             {
                 Email = user.Email,
                 Password = user.Password,
-                PersonsId = personId
+                PersonId = personId
             });
 
-            return command1 > 0 && command2 > 0;
+            return personId  > 0 && command2 > 0;
         }
         
     }

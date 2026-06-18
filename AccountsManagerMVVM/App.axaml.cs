@@ -14,7 +14,7 @@ namespace AccountsManagerMVVM;
 
 public partial class App : Application
 {
-    public static DbContext DbContext = new("Host=localhost;Port=5432;Username=admin;Password=1234;Database=user_db");
+    public static DbContext DbPostgres = new("Host=localhost;Port=5432;Username=admin;Password=1234;Database=user_db");
     
     
     public override void Initialize()
