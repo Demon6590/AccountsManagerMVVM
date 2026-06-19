@@ -21,8 +21,18 @@
     image: migrate/migrate
     volumes:
       - ./migrations:/migrations
-
     command: -path=/migrations -database "postgres://admin:1234@postgres:5432/user_db?sslmode=disable" up
     depends_on:
       postgres:
         condition: service_healthy
+
+  avalonia_app:
+    container_name: accounts_manager_ui
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      migrations:
+        condition: service_started
