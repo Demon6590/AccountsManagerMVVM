@@ -5,7 +5,7 @@ using ReactiveUI.SourceGenerators;
 
 namespace AccountsManagerMVVM.ViewModels;
 
-public partial class RestoringAccessWindowViewModel : ViewModelBase,IRoutableViewModel
+public partial class RestoringAccessWindowViewModel : ViewModelBase, IRoutableViewModel
 {    
     
     public string? UrlPathSegment => "restoring-access";

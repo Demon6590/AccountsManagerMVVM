@@ -3,9 +3,9 @@ using System.Linq;
 using Avalonia.Interactivity;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-namespace AccountsManagerMVVM.ViewModels;
-using System;
 using Avalonia.Interactivity;
+namespace AccountsManagerMVVM.ViewModels;
+
 
 public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
 {    
@@ -18,7 +18,7 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
     }
 
     [Reactive]
-    private string _login = string.Empty;
+    private string _email = string.Empty;
     
     [Reactive]
     private string _password = string.Empty;
@@ -32,7 +32,7 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
     [ReactiveCommand]
     private void UserLogin()
     {
-        if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Password))
+        if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
         {
             return;
         }
@@ -47,7 +47,7 @@ public partial class AuthWindowViewModel : ViewModelBase, IRoutableViewModel
         
         var listUsers = App.DbPostgres.GetAllUsers();
         
-        var user = listUsers.FirstOrDefault(u => string.Equals(u.Email, Login) && string.Equals(u.Password, Password));
+        var user = listUsers.FirstOrDefault(u => string.Equals(u.Email, Email) && string.Equals(u.Password, Password));
         if (user == null)
         {
             return;

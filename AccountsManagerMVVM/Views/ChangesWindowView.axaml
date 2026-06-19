@@ -1,9 +1,9 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:components="clr-namespace:AccountsManagerMVVM.Components"
-             xmlns:vm="using:AccountsManagerMVVM.ViewModels"
-             x:Class="AccountsManagerMVVM.Views.СhangesWindowView"
-             x:DataType="vm:СhangesWindowViewModel">
+             xmlns:vm="clr-namespace:AccountsManagerMVVM.ViewModels"
+             x:Class="AccountsManagerMVVM.Views.ChangesWindowView"
+             x:DataType="vm:ChangesWindowViewModel">
 
     <StackPanel Orientation="Vertical">
         <Panel Classes="center">

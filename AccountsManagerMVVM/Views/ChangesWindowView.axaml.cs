@@ -6,9 +6,9 @@ using ReactiveUI.Avalonia;
 
 namespace AccountsManagerMVVM.Views;
 
-public partial class СhangesWindowView :  ReactiveUserControl<СhangesWindowViewModel>
+public partial class ChangesWindowView :  ReactiveUserControl<ChangesWindowViewModel>
 {
-    public СhangesWindowView()
+    public ChangesWindowView()
     {
         InitializeComponent();
     }

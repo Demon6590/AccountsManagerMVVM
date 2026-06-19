@@ -1,11 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using AccountsManagerMVVM.Models;
 using ReactiveUI;
+using ReactiveUI.SourceGenerators;
+
 
 namespace AccountsManagerMVVM.ViewModels;
 
-public class MainWorkViewModel : ViewModelBase, IRoutableViewModel
+public partial class MainWorkViewModel : ViewModelBase, IRoutableViewModel
 {
 
     public string? UrlPathSegment => "main-work";
@@ -17,12 +21,13 @@ public class MainWorkViewModel : ViewModelBase, IRoutableViewModel
         HostScreen = hostScreen;
         FilteredUsers();
         this.WhenAnyValue(x => x.SelectedUser)
+            .Where(user=>user != null)
             .Subscribe(user =>
             {
                 if (user != null)
                 {
 
-                    var editViewModel = new СhangesWindowViewModel(HostScreen, user);
+                    var editViewModel = new ChangesWindowViewModel(HostScreen, user);
                     HostScreen.Router.Navigate.Execute(editViewModel);
                     
                     SelectedUser = null; 

@@ -1,17 +1,21 @@
 ﻿using AccountsManagerMVVM.Models;
 using ReactiveUI;
-
+using Avalonia.Interactivity;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
+using Avalonia.Interactivity;
 namespace AccountsManagerMVVM.ViewModels;
 
-public partial class СhangesWindowViewModel: ViewModelBase,IRoutableViewModel
+public partial class ChangesWindowViewModel: ViewModelBase,IRoutableViewModel
 {
     public string? UrlPathSegment => "changes";
     public IScreen HostScreen { get; }
+    
 
-    public СhangesWindowViewModel(IScreen hostScreen,User targetUser)
+    public ChangesWindowViewModel(IScreen hostScreen,User targetUser)
     {
         HostScreen = hostScreen;
-
+        TargetUser = targetUser;
 
         LastName = targetUser.LastName;
         FirstName = targetUser.FirstName;
@@ -31,6 +35,10 @@ public partial class СhangesWindowViewModel: ViewModelBase,IRoutableViewModel
     private string _email = string.Empty;
     [Reactive] 
     private string _password = string.Empty;
+    [Reactive] 
+    private bool _emailHasError;
+    [Reactive] 
+    private bool _passwordHasError;
 
 
     [ReactiveCommand]
@@ -49,6 +57,15 @@ public partial class СhangesWindowViewModel: ViewModelBase,IRoutableViewModel
             Patronymic = "";
         }
 
+        if (_emailHasError)
+        {
+            return;
+        }
+
+        if (_passwordHasError)
+        {
+            return;
+        }
         var updatedUser = TargetUser with 
         { 
             LastName = LastName, 
@@ -68,7 +85,7 @@ public partial class СhangesWindowViewModel: ViewModelBase,IRoutableViewModel
     }
 
     [ReactiveCommand]
-    public void GoBack()
+    public void Cancel()
     {
         HostScreen.Router.NavigateBack.Execute();
     }
