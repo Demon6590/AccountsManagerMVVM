@@ -10,7 +10,7 @@ CREATE TABLE table_persons
 CREATE TABLE table_accounts
 (
     id        SERIAL PRIMARY KEY,
-    email     TEXT    NOT NULL,
+    email     TEXT    NOT NULL UNIQUE,
     password  TEXT    NOT NULL,
     person_id INTEGER NOT NULL REFERENCES table_persons (id) ON DELETE CASCADE
 );

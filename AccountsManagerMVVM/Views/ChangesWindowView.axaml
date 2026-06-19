@@ -39,7 +39,7 @@
             <Button Content="Назад" 
                     Classes="cancel"
                     Template="{StaticResource ResourceKey=ButtonRightTemplate}"
-                    Command="{Binding CancelCommand}"/>
+                    Command="{Binding BackCommand}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

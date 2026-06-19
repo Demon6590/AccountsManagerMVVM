@@ -85,10 +85,8 @@ public partial class ChangesWindowViewModel: ViewModelBase,IRoutableViewModel
     }
 
     [ReactiveCommand]
-    public void Cancel()
+    public void Back()
     {
         HostScreen.Router.NavigateBack.Execute();
     }
-
-    
 }

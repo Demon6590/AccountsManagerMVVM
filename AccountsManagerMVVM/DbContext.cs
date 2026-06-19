@@ -16,7 +16,6 @@ public class DbContext
     public DbContext(string connectionString)
     {
         ConnectionString = connectionString;
-
     }
 
     public IEnumerable<User> GetAllUsers()
@@ -25,7 +24,7 @@ public class DbContext
         {
             db.Open();
             const string sql =
-                "SELECT person_id, last_name, first_name,patronymic, email,password  FROM view_persons_and_accounts";
+                "SELECT person_id, last_name, first_name,patronymic, email,password,is_admin  FROM view_persons_and_accounts";
             return db.Query<User>(sql);
         }
     }
@@ -40,13 +39,13 @@ public class DbContext
                                 VALUES (@LastName, @FirstName, @Patronymic)
                                 RETURNING id;
                                 """;
-            var personId  = db.QuerySingle(sql1,new
+            var personId = db.QuerySingle<int>(sql1, new
             {
                 LastName = user.LastName,
                 FirstName = user.FirstName,
                 Patronymic = user.Patronymic
             });
-            
+
             const string sql2 = """
                                 INSERT INTO table_accounts(email, password,person_id)
                                 VALUES (@Email, @Password, @PersonId);
@@ -58,9 +57,8 @@ public class DbContext
                 PersonId = personId
             });
 
-            return personId  > 0 && command2 > 0;
+            return personId > 0 && command2 > 0;
         }
-        
     }
 
     public bool UpdateUser(User user)
@@ -97,7 +95,13 @@ public class DbContext
             });
             return rowsPerson > 0 && rowsAccount > 0;
         }
-
     }
-
+    public bool IsEmailExists(string email)
+    {
+        using (var db = new NpgsqlConnection(ConnectionString))
+        {
+            const string sql = "SELECT EXISTS(SELECT 1 FROM table_accounts WHERE email = @Email);";
+            return db.ExecuteScalar<bool>(sql, new { Email = email });
+        }
+    }
 }

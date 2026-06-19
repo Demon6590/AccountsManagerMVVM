@@ -51,7 +51,7 @@ public partial class RegistrationWindowViewModel : ViewModelBase, IRoutableViewM
 
         if (string.IsNullOrWhiteSpace(Patronymic))
         {
-            return;
+            Patronymic = "";
         }
 
         if (string.IsNullOrWhiteSpace(Email))
@@ -75,8 +75,17 @@ public partial class RegistrationWindowViewModel : ViewModelBase, IRoutableViewM
         {
             return;
         }
-
+        bool emailExists = App.DbPostgres.IsEmailExists(Email);
+        if (emailExists)
+        {
+            return;
+        }
+        
         UserInsert newUser = new UserInsert(LastName, FirstName, Patronymic, Email, Password);
+        
+        
+        
+        
         bool addUser = App.DbPostgres.AddUser(newUser);
         if (!addUser)
         {

@@ -4,17 +4,23 @@
              xmlns:models="clr-namespace:AccountsManagerMVVM.Models"
              x:DataType="vm:MainWorkViewModel"
              x:Class="AccountsManagerMVVM.Views.MainWorkView">
-    <ListBox ItemsSource="{Binding Users}" 
-             SelectedItem="{Binding SelectedUser, Mode=TwoWay}" 
-             Margin="10">
-        <ListBox.ItemTemplate>
-            <DataTemplate x:DataType="models:User">
-                <StackPanel Orientation="Horizontal" 
-                            Spacing="6" 
-                            Background="Transparent" >
-                    <TextBlock Text="{Binding FullName}" FontSize="16"/>
-                </StackPanel>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <StackPanel Orientation="Vertical">
+        <ListBox ItemsSource="{Binding Users}"
+                 SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                 Margin="10">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:User">
+                    <StackPanel Orientation="Horizontal"
+                                Spacing="6"
+                                Background="Transparent">
+                        <TextBlock Text="{Binding FullName}" FontSize="16" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Назад"
+                Classes="cancel"
+                Template="{StaticResource ResourceKey=ButtonRightTemplate}"
+                Command="{Binding BackCommand}"/>
+    </StackPanel>
 </UserControl>

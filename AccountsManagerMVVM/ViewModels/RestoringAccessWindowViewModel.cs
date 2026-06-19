@@ -44,7 +44,7 @@ public partial class RestoringAccessWindowViewModel : ViewModelBase, IRoutableVi
     }
 
     [ReactiveCommand]
-    public void OpenPreviousWindow()
+    public void Back()
     {
         HostScreen.Router.NavigateBack.Execute();
     }

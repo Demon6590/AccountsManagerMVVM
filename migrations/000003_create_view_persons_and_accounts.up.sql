@@ -4,6 +4,7 @@ SELECT pers.id AS person_id,
        pers.first_name,
        pers.patronymic,
        account.email,
-       account.password
+       account.password,
+       pers.is_admin
 FROM table_persons pers
          JOIN table_accounts account ON pers.id = account.person_id;
